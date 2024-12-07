@@ -15,7 +15,7 @@
 int
 main (int argc, char *argv[])
 {
-  GtkWidget *ajouteriheb;
+  GtkWidget *ihebhome;
   GtkWidget *modifieriheb;
   GtkWidget *supprimeriheb;
 
@@ -35,12 +35,8 @@ main (int argc, char *argv[])
    * (except popup menus), just so that you see something after building
    * the project. Delete any components that you don't want shown initially.
    */
-  ajouteriheb = create_ajouteriheb ();
-  gtk_widget_show (ajouteriheb);
-  modifieriheb = create_modifieriheb ();
-  gtk_widget_show (modifieriheb);
-  supprimeriheb = create_supprimeriheb ();
-  gtk_widget_show (supprimeriheb);
+  ihebhome = create_ihebwindow ();
+  gtk_widget_show (ihebhome);
 
   gtk_main ();
   return 0;

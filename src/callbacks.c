@@ -75,3 +75,152 @@ agent a ;
 
 }
 
+
+void
+on_afficher_reservation_clicked        (GtkButton       *button,
+                                        gpointer         user_data)
+{
+
+}
+
+
+void
+on_chercheriheb_clicked                (GtkButton       *button,
+                                        gpointer         user_data)
+{
+
+}
+
+
+void
+on_modifier_iheb_clicked               (GtkButton       *button,
+                                        gpointer         user_data)
+{
+
+}
+
+
+void
+on_supprimiheb_clicked                 (GtkButton       *button,
+                                        gpointer         user_data)
+{
+char id77[50];
+int ident,uuioi;
+agent a ;
+GtkWidget *entry_supp_iheb_id;
+GtkWidget* treeview2;
+entry_supp_iheb_id=lookup_widget(button,"entry_supp_iheb_id");
+
+strcpy(id77,gtk_entry_get_text(GTK_ENTRY(entry_supp_iheb_id) ) );
+
+ident=atoi(id77);
+uuioi=supprimer_agent("agent.txt",555);
+GtkWidget* suprim;
+GtkWidget* affiche;
+suprim=lookup_widget(button,"supprimeriheb");
+gtk_widget_destroy(suprim);
+affiche=create_ihebwindow();
+gtk_widget_show(affiche);
+//treeview2=lookup_widget(affiche, "treeviewnk") ;	
+//afficher_agent(treeview2,"agent.txt");
+}
+
+
+void
+on_btn_ajout_iheb_nav_clicked          (GtkButton       *button,
+                                        gpointer         user_data)
+{
+        GtkWidget *ihebwindow,*ajouteriheb;
+	
+	ihebwindow=lookup_widget(button,"ihebwindow");
+	gtk_widget_destroy(ihebwindow);
+	ajouteriheb=create_ajouteriheb();
+	gtk_widget_show(ajouteriheb);
+
+}
+
+
+void
+on_btn_modifier_iheb_nav_clicked       (GtkButton       *button,
+                                        gpointer         user_data)
+{
+
+}
+
+
+void
+on_btn_supprimer_iheb_nav_clicked      (GtkButton       *button,
+                                        gpointer         user_data)
+{
+        GtkWidget *ihebwindow,*supprimeriheb;
+	
+	ihebwindow=lookup_widget(button,"ihebwindow");
+	gtk_widget_destroy(ihebwindow);
+	supprimeriheb=create_supprimeriheb();
+	gtk_widget_show(supprimeriheb);
+
+}
+
+
+void
+on_btn_actualise_iheb_clicked          (GtkButton       *button,
+                                        gpointer         user_data)
+{
+
+}
+
+
+void
+on_btn_chercher_iheb_clicked           (GtkButton       *button,
+                                        gpointer         user_data)
+{
+
+}
+
+
+void
+on_Accueil_iheb_nav_clicked            (GtkButton       *button,
+                                        gpointer         user_data)
+{
+
+}
+
+
+void
+on_treeviewnk_row_iheb_activated       (GtkTreeView     *treeview,
+                                        GtkTreePath     *path,
+                                        GtkTreeViewColumn *column,
+                                        gpointer         user_data)
+{
+
+}
+
+
+void
+on_precedent_iheb_supp_clicked         (GtkButton       *button,
+                                        gpointer         user_data)
+{       
+           GtkWidget *ihebwindow,*supprimeriheb;
+	
+	ihebwindow=create_ihebwindow();
+
+        supprimeriheb=lookup_widget(button,"supprimeriheb");
+	gtk_widget_destroy(supprimeriheb);
+	
+	gtk_widget_show(ihebwindow);
+
+
+}
+
+
+void
+on_confirmer_ihebsup_toggled           (GtkToggleButton *togglebutton,
+                                        gpointer         user_data)
+{
+
+}
+
+
+
+
+

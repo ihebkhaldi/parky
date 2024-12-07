@@ -29,4 +29,5 @@ int supprimer_agent(char *filename, int ID);
 int afficher_agent(char *filename);
 agent chercher_agent(char *filename, int ID);
 void afficher_reservation(char*file_reservation,char date_reservation[]);
+//void afficher_agent(GtkWidget* treeview1,char*l);
 #endif

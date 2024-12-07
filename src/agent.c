@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include <string.h>
 
+#include <gtk/gtk.h>
+
 int ajouter_agent(char *filename, agent a) {
     FILE *f = fopen(filename, "a");
     if (f != NULL) {
@@ -46,7 +48,7 @@ int supprimer_agent(char *filename, int ID) {
     agent a;
     FILE *f = fopen(filename, "r");
     FILE *f2 = fopen("nouv.txt", "w");
-
+printf("here");
     if (f != NULL && f2 != NULL) {
         while (fscanf(f, "%d %d %d %s %s %s %d %s\n", &a.ID_agent, &a.ID_parking, &a.ID_service,
                       a.nom_agent, a.prenom_agent, a.sexe, &a.numero_tel, a.fonction_agent) != EOF) {
@@ -127,10 +129,86 @@ printf("echec affichage :impossible d'ovrir le fichier.\n");
    }
 
     
+/*
+
+void afficher_agent(GtkWidget* treeview1,char*l)
+{
+	GtkListStore *adstore;
+	GtkTreeViewColumn *adcolumn;
+	GtkCellRenderer *cellad;
+	FILE *f;
+	Utilisateur u;
+        int i;
+        adstore = gtk_list_store_new(6,
+                                     G_TYPE_STRING,
+                                     G_TYPE_STRING,
+                                     G_TYPE_INT,
+				     G_TYPE_INT,
+          	       	             G_TYPE_INT,
+				     G_TYPE_INT
+                                     );
+        f=fopen(l,"r");
+while(fscanf(f,"%s %s %d %d %d %d ",u.nom,u.prenom,&u.mdp,&u.sexe,&u.role,&u.id)!=EOF)
+        {GtkTreeIter pIter;
+         gtk_list_store_append(adstore, &pIter);
+         gtk_list_store_set(adstore, &pIter,
+                            0,u.nom,
+                            1,u.prenom,
+                            2,u.mdp,
+                            3,u.sexe,
+                            4,u.role,
+                            5,u.id,
+                            -1);}
+        fclose(f);
+if(i==0)
+{cellad = gtk_cell_renderer_text_new();
+        adcolumn = gtk_tree_view_column_new_with_attributes("nom",
+                                                            cellad,
+                                                            "text", 0,
+                                                            NULL);
+gtk_tree_view_append_column(GTK_TREE_VIEW(treeview1), adcolumn);
+        cellad = gtk_cell_renderer_text_new();
+        adcolumn = gtk_tree_view_column_new_with_attributes("prenom",
+                                                            cellad,
+                                                            "text", 1,
+                                                            NULL);
+gtk_tree_view_append_column(GTK_TREE_VIEW(treeview1), adcolumn);
+        cellad = gtk_cell_renderer_text_new();
+        adcolumn = gtk_tree_view_column_new_with_attributes("mot de passe",
+                                                            cellad,
+                                                            "text", 2,
+                                                            NULL);
+gtk_tree_view_append_column(GTK_TREE_VIEW(treeview1), adcolumn);
+
+        cellad = gtk_cell_renderer_text_new();
+        adcolumn = gtk_tree_view_column_new_with_attributes("sexe(0:HOMME | 1:Femme)",
+                                                            cellad,
+                                                            "text", 3,
+                                                            NULL);
+gtk_tree_view_append_column(GTK_TREE_VIEW(treeview1), adcolumn);
+        cellad = gtk_cell_renderer_text_new();
+        adcolumn = gtk_tree_view_column_new_with_attributes("role",
+                                                            cellad,
+                                                            "text", 4,
+                                                            NULL);
+gtk_tree_view_append_column(GTK_TREE_VIEW(treeview1), adcolumn);
+
+        cellad = gtk_cell_renderer_text_new();
+        adcolumn = gtk_tree_view_column_new_with_attributes("id",
+                                                            cellad,
+                                                            "text", 5,
+                                                            NULL);
+gtk_tree_view_append_column(GTK_TREE_VIEW(treeview1), adcolumn);
 
 
 
+i++;}
 
+
+  gtk_tree_view_set_model ( GTK_TREE_VIEW (treeview1),
+                                  GTK_TREE_MODEL(adstore)  );
+}
+*/
 
 
 
