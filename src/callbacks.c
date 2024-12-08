@@ -299,7 +299,7 @@ gtk_widget_destroy(affiche1);
 affiche=create_ihebwindow();
 treeview1=lookup_widget(affiche, "treeviewnk");
 afficher_agent(treeview1,"agent.txt");
-gtk_widget_show(affiche);
+ gtk_widget_show(affiche);
 
 
 }
