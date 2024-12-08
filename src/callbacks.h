@@ -33,9 +33,6 @@ void
 on_btn_ajout_iheb_nav_clicked          (GtkButton       *button,
                                         gpointer         user_data);
 
-void
-on_btn_modifier_iheb_nav_clicked       (GtkButton       *button,
-                                        gpointer         user_data);
 
 void
 on_btn_supprimer_iheb_nav_clicked      (GtkButton       *button,
@@ -70,3 +67,16 @@ on_confirmer_ihebsup_toggled           (GtkToggleButton *togglebutton,
 void
 on_btn_ajout_iheb_clicked              (GtkButton       *button,
                                         gpointer         user_data);
+
+void
+on_button_precedent_iheb_ajout_clicked (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_btn_modifier_iheb_nav_clicked       (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_precedent_iheb_modifier_clicked     (GtkButton       *button,
+                                        gpointer         user_data);
+

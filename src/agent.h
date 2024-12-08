@@ -2,6 +2,7 @@
 #define AGENT_H_INCLUDED
 
 #include <stdio.h>
+#include <gtk/gtk.h>
 
 typedef struct {
     int ID_agent;
@@ -26,8 +27,10 @@ char nom_parking[20];
 int ajouter_agent(char *filename, agent a);
 int modifier_agent(char *filename, int ID, agent nouv);
 int supprimer_agent(char *filename, int ID);
-int afficher_agent(char *filename);
+//int afficher_agent(char *filename);
 agent chercher_agent(char *filename, int ID);
 void afficher_reservation(char*file_reservation,char date_reservation[]);
-//void afficher_agent(GtkWidget* treeview1,char*l);
+void replaceUnderscoreWithSpace(char *str);
+void replaceSpacesWithUnderscore(char *str);
+void afficher_agent(GtkWidget* treeview1,char*filename);
 #endif

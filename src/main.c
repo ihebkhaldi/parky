@@ -18,6 +18,7 @@ main (int argc, char *argv[])
   GtkWidget *ihebhome;
   GtkWidget *modifieriheb;
   GtkWidget *supprimeriheb;
+  GtkWidget *treeview1;
 
 #ifdef ENABLE_NLS
   bindtextdomain (GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR);
@@ -36,6 +37,8 @@ main (int argc, char *argv[])
    * the project. Delete any components that you don't want shown initially.
    */
   ihebhome = create_ihebwindow ();
+  treeview1=lookup_widget(ihebhome, "treeviewnk");
+  afficher_agent(treeview1,"agent.txt");
   gtk_widget_show (ihebhome);
 
   gtk_main ();

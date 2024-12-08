@@ -34,11 +34,6 @@ create_ihebwindow (void)
   GtkWidget *treeviewnk;
   GtkWidget *entrychercheriheb;
   GtkWidget *label174;
-  GtkWidget *btn_modifier_iheb;
-  GtkWidget *alignment3;
-  GtkWidget *hbox3;
-  GtkWidget *image3;
-  GtkWidget *label3;
   GtkWidget *btn_supprimer_iheb;
   GtkWidget *alignment2;
   GtkWidget *hbox2;
@@ -65,6 +60,11 @@ create_ihebwindow (void)
   GtkWidget *hbox1;
   GtkWidget *image1;
   GtkWidget *label1;
+  GtkWidget *btn_modifier_iheb_nav;
+  GtkWidget *alignment3;
+  GtkWidget *hbox3;
+  GtkWidget *image3;
+  GtkWidget *label3;
 
   ihebwindow = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_window_set_title (GTK_WINDOW (ihebwindow), _("ihebwindow"));
@@ -90,27 +90,6 @@ create_ihebwindow (void)
   gtk_fixed_put (GTK_FIXED (fixed1), label174, 256, 88);
   gtk_widget_set_size_request (label174, 57, 17);
   gtk_label_set_use_markup (GTK_LABEL (label174), TRUE);
-
-  btn_modifier_iheb = gtk_button_new ();
-  gtk_widget_show (btn_modifier_iheb);
-  gtk_fixed_put (GTK_FIXED (fixed1), btn_modifier_iheb, 136, 424);
-  gtk_widget_set_size_request (btn_modifier_iheb, 140, 29);
-
-  alignment3 = gtk_alignment_new (0.5, 0.5, 0, 0);
-  gtk_widget_show (alignment3);
-  gtk_container_add (GTK_CONTAINER (btn_modifier_iheb), alignment3);
-
-  hbox3 = gtk_hbox_new (FALSE, 2);
-  gtk_widget_show (hbox3);
-  gtk_container_add (GTK_CONTAINER (alignment3), hbox3);
-
-  image3 = gtk_image_new_from_stock ("gtk-edit", GTK_ICON_SIZE_BUTTON);
-  gtk_widget_show (image3);
-  gtk_box_pack_start (GTK_BOX (hbox3), image3, FALSE, FALSE, 0);
-
-  label3 = gtk_label_new_with_mnemonic (_("Modifier"));
-  gtk_widget_show (label3);
-  gtk_box_pack_start (GTK_BOX (hbox3), label3, FALSE, FALSE, 0);
 
   btn_supprimer_iheb = gtk_button_new ();
   gtk_widget_show (btn_supprimer_iheb);
@@ -222,11 +201,29 @@ create_ihebwindow (void)
   gtk_widget_show (label1);
   gtk_box_pack_start (GTK_BOX (hbox1), label1, FALSE, FALSE, 0);
 
+  btn_modifier_iheb_nav = gtk_button_new ();
+  gtk_widget_show (btn_modifier_iheb_nav);
+  gtk_fixed_put (GTK_FIXED (fixed1), btn_modifier_iheb_nav, 136, 424);
+  gtk_widget_set_size_request (btn_modifier_iheb_nav, 140, 29);
+
+  alignment3 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment3);
+  gtk_container_add (GTK_CONTAINER (btn_modifier_iheb_nav), alignment3);
+
+  hbox3 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox3);
+  gtk_container_add (GTK_CONTAINER (alignment3), hbox3);
+
+  image3 = gtk_image_new_from_stock ("gtk-edit", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image3);
+  gtk_box_pack_start (GTK_BOX (hbox3), image3, FALSE, FALSE, 0);
+
+  label3 = gtk_label_new_with_mnemonic (_("Modifier"));
+  gtk_widget_show (label3);
+  gtk_box_pack_start (GTK_BOX (hbox3), label3, FALSE, FALSE, 0);
+
   g_signal_connect ((gpointer) treeviewnk, "row_activated",
                     G_CALLBACK (on_treeviewnk_row_iheb_activated),
-                    NULL);
-  g_signal_connect ((gpointer) btn_modifier_iheb, "clicked",
-                    G_CALLBACK (on_btn_modifier_iheb_nav_clicked),
                     NULL);
   g_signal_connect ((gpointer) btn_supprimer_iheb, "clicked",
                     G_CALLBACK (on_btn_supprimer_iheb_nav_clicked),
@@ -246,6 +243,9 @@ create_ihebwindow (void)
   g_signal_connect ((gpointer) btn_ajout_iheb, "clicked",
                     G_CALLBACK (on_btn_ajout_iheb_nav_clicked),
                     NULL);
+  g_signal_connect ((gpointer) btn_modifier_iheb_nav, "clicked",
+                    G_CALLBACK (on_btn_modifier_iheb_nav_clicked),
+                    NULL);
 
   /* Store pointers to all widgets, for use by lookup_widget(). */
   GLADE_HOOKUP_OBJECT_NO_REF (ihebwindow, ihebwindow, "ihebwindow");
@@ -253,11 +253,6 @@ create_ihebwindow (void)
   GLADE_HOOKUP_OBJECT (ihebwindow, treeviewnk, "treeviewnk");
   GLADE_HOOKUP_OBJECT (ihebwindow, entrychercheriheb, "entrychercheriheb");
   GLADE_HOOKUP_OBJECT (ihebwindow, label174, "label174");
-  GLADE_HOOKUP_OBJECT (ihebwindow, btn_modifier_iheb, "btn_modifier_iheb");
-  GLADE_HOOKUP_OBJECT (ihebwindow, alignment3, "alignment3");
-  GLADE_HOOKUP_OBJECT (ihebwindow, hbox3, "hbox3");
-  GLADE_HOOKUP_OBJECT (ihebwindow, image3, "image3");
-  GLADE_HOOKUP_OBJECT (ihebwindow, label3, "label3");
   GLADE_HOOKUP_OBJECT (ihebwindow, btn_supprimer_iheb, "btn_supprimer_iheb");
   GLADE_HOOKUP_OBJECT (ihebwindow, alignment2, "alignment2");
   GLADE_HOOKUP_OBJECT (ihebwindow, hbox2, "hbox2");
@@ -284,6 +279,11 @@ create_ihebwindow (void)
   GLADE_HOOKUP_OBJECT (ihebwindow, hbox1, "hbox1");
   GLADE_HOOKUP_OBJECT (ihebwindow, image1, "image1");
   GLADE_HOOKUP_OBJECT (ihebwindow, label1, "label1");
+  GLADE_HOOKUP_OBJECT (ihebwindow, btn_modifier_iheb_nav, "btn_modifier_iheb_nav");
+  GLADE_HOOKUP_OBJECT (ihebwindow, alignment3, "alignment3");
+  GLADE_HOOKUP_OBJECT (ihebwindow, hbox3, "hbox3");
+  GLADE_HOOKUP_OBJECT (ihebwindow, image3, "image3");
+  GLADE_HOOKUP_OBJECT (ihebwindow, label3, "label3");
 
   return ihebwindow;
 }
@@ -307,20 +307,20 @@ create_ajouteriheb (void)
   GtkWidget *label6;
   GtkWidget *label7;
   GtkWidget *label8;
-  GtkWidget *button_precedent;
-  GtkWidget *alignment2;
-  GtkWidget *hbox2;
-  GtkWidget *image2;
-  GtkWidget *label10;
-  GtkWidget *comboboxentry_fonction1;
-  GtkWidget *radioiheb_h;
-  GSList *radioiheb_h_group = NULL;
-  GtkWidget *radioiheb_f;
   GtkWidget *ajouter_iheb;
   GtkWidget *alignment1;
   GtkWidget *hbox1;
   GtkWidget *image1;
   GtkWidget *label9;
+  GtkWidget *comboboxentry_fonction1;
+  GtkWidget *button_precedent;
+  GtkWidget *alignment2;
+  GtkWidget *hbox2;
+  GtkWidget *image2;
+  GtkWidget *label10;
+  GtkWidget *radioiheb_h;
+  GSList *radioiheb_h_group = NULL;
+  GtkWidget *radioiheb_f;
 
   ajouteriheb = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_window_set_title (GTK_WINDOW (ajouteriheb), _("ajouteriheb"));
@@ -405,48 +405,6 @@ create_ajouteriheb (void)
   gtk_fixed_put (GTK_FIXED (fixed1), label8, 144, 448);
   gtk_widget_set_size_request (label8, 120, 32);
 
-  button_precedent = gtk_button_new ();
-  gtk_widget_show (button_precedent);
-  gtk_fixed_put (GTK_FIXED (fixed1), button_precedent, 0, 0);
-  gtk_widget_set_size_request (button_precedent, 128, 40);
-
-  alignment2 = gtk_alignment_new (0.5, 0.5, 0, 0);
-  gtk_widget_show (alignment2);
-  gtk_container_add (GTK_CONTAINER (button_precedent), alignment2);
-
-  hbox2 = gtk_hbox_new (FALSE, 2);
-  gtk_widget_show (hbox2);
-  gtk_container_add (GTK_CONTAINER (alignment2), hbox2);
-
-  image2 = gtk_image_new_from_stock ("gtk-go-back", GTK_ICON_SIZE_BUTTON);
-  gtk_widget_show (image2);
-  gtk_box_pack_start (GTK_BOX (hbox2), image2, FALSE, FALSE, 0);
-
-  label10 = gtk_label_new_with_mnemonic (_("pr\303\251cedent"));
-  gtk_widget_show (label10);
-  gtk_box_pack_start (GTK_BOX (hbox2), label10, FALSE, FALSE, 0);
-
-  comboboxentry_fonction1 = gtk_combo_box_entry_new_text ();
-  gtk_widget_show (comboboxentry_fonction1);
-  gtk_fixed_put (GTK_FIXED (fixed1), comboboxentry_fonction1, 272, 296);
-  gtk_widget_set_size_request (comboboxentry_fonction1, 189, 29);
-  gtk_combo_box_append_text (GTK_COMBO_BOX (comboboxentry_fonction1), _("1- securit\303\251 de parking"));
-  gtk_combo_box_append_text (GTK_COMBO_BOX (comboboxentry_fonction1), _("2- tarif de parking"));
-
-  radioiheb_h = gtk_radio_button_new_with_mnemonic (NULL, _("Homme"));
-  gtk_widget_show (radioiheb_h);
-  gtk_fixed_put (GTK_FIXED (fixed1), radioiheb_h, 272, 232);
-  gtk_widget_set_size_request (radioiheb_h, 116, 24);
-  gtk_radio_button_set_group (GTK_RADIO_BUTTON (radioiheb_h), radioiheb_h_group);
-  radioiheb_h_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (radioiheb_h));
-
-  radioiheb_f = gtk_radio_button_new_with_mnemonic (NULL, _("Femme"));
-  gtk_widget_show (radioiheb_f);
-  gtk_fixed_put (GTK_FIXED (fixed1), radioiheb_f, 272, 264);
-  gtk_widget_set_size_request (radioiheb_f, 116, 24);
-  gtk_radio_button_set_group (GTK_RADIO_BUTTON (radioiheb_f), radioiheb_h_group);
-  radioiheb_h_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (radioiheb_f));
-
   ajouter_iheb = gtk_button_new ();
   gtk_widget_show (ajouter_iheb);
   gtk_fixed_put (GTK_FIXED (fixed1), ajouter_iheb, 536, 480);
@@ -468,14 +426,59 @@ create_ajouteriheb (void)
   gtk_widget_show (label9);
   gtk_box_pack_start (GTK_BOX (hbox1), label9, FALSE, FALSE, 0);
 
+  comboboxentry_fonction1 = gtk_combo_box_entry_new_text ();
+  gtk_widget_show (comboboxentry_fonction1);
+  gtk_fixed_put (GTK_FIXED (fixed1), comboboxentry_fonction1, 272, 296);
+  gtk_widget_set_size_request (comboboxentry_fonction1, 189, 29);
+  gtk_combo_box_append_text (GTK_COMBO_BOX (comboboxentry_fonction1), _("1-securite_parking"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (comboboxentry_fonction1), _("2-tarif_parking"));
+
+  button_precedent = gtk_button_new ();
+  gtk_widget_show (button_precedent);
+  gtk_fixed_put (GTK_FIXED (fixed1), button_precedent, 0, 0);
+  gtk_widget_set_size_request (button_precedent, 128, 40);
+
+  alignment2 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment2);
+  gtk_container_add (GTK_CONTAINER (button_precedent), alignment2);
+
+  hbox2 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox2);
+  gtk_container_add (GTK_CONTAINER (alignment2), hbox2);
+
+  image2 = gtk_image_new_from_stock ("gtk-go-back", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image2);
+  gtk_box_pack_start (GTK_BOX (hbox2), image2, FALSE, FALSE, 0);
+
+  label10 = gtk_label_new_with_mnemonic (_("pr\303\251cedent"));
+  gtk_widget_show (label10);
+  gtk_box_pack_start (GTK_BOX (hbox2), label10, FALSE, FALSE, 0);
+
+  radioiheb_h = gtk_radio_button_new_with_mnemonic (NULL, _("Homme"));
+  gtk_widget_show (radioiheb_h);
+  gtk_fixed_put (GTK_FIXED (fixed1), radioiheb_h, 272, 232);
+  gtk_widget_set_size_request (radioiheb_h, 116, 24);
+  gtk_radio_button_set_group (GTK_RADIO_BUTTON (radioiheb_h), radioiheb_h_group);
+  radioiheb_h_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (radioiheb_h));
+
+  radioiheb_f = gtk_radio_button_new_with_mnemonic (NULL, _("Femme"));
+  gtk_widget_show (radioiheb_f);
+  gtk_fixed_put (GTK_FIXED (fixed1), radioiheb_f, 272, 264);
+  gtk_widget_set_size_request (radioiheb_f, 116, 24);
+  gtk_radio_button_set_group (GTK_RADIO_BUTTON (radioiheb_f), radioiheb_h_group);
+  radioiheb_h_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (radioiheb_f));
+
+  g_signal_connect ((gpointer) ajouter_iheb, "clicked",
+                    G_CALLBACK (on_ajouter_iheb_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) button_precedent, "clicked",
+                    G_CALLBACK (on_button_precedent_iheb_ajout_clicked),
+                    NULL);
   g_signal_connect ((gpointer) radioiheb_h, "toggled",
                     G_CALLBACK (on_radioiheb_h_toggled),
                     NULL);
   g_signal_connect ((gpointer) radioiheb_f, "toggled",
                     G_CALLBACK (on_radioiheb_f_toggled),
-                    NULL);
-  g_signal_connect ((gpointer) ajouter_iheb, "clicked",
-                    G_CALLBACK (on_ajouter_iheb_clicked),
                     NULL);
 
   /* Store pointers to all widgets, for use by lookup_widget(). */
@@ -495,19 +498,19 @@ create_ajouteriheb (void)
   GLADE_HOOKUP_OBJECT (ajouteriheb, label6, "label6");
   GLADE_HOOKUP_OBJECT (ajouteriheb, label7, "label7");
   GLADE_HOOKUP_OBJECT (ajouteriheb, label8, "label8");
-  GLADE_HOOKUP_OBJECT (ajouteriheb, button_precedent, "button_precedent");
-  GLADE_HOOKUP_OBJECT (ajouteriheb, alignment2, "alignment2");
-  GLADE_HOOKUP_OBJECT (ajouteriheb, hbox2, "hbox2");
-  GLADE_HOOKUP_OBJECT (ajouteriheb, image2, "image2");
-  GLADE_HOOKUP_OBJECT (ajouteriheb, label10, "label10");
-  GLADE_HOOKUP_OBJECT (ajouteriheb, comboboxentry_fonction1, "comboboxentry_fonction1");
-  GLADE_HOOKUP_OBJECT (ajouteriheb, radioiheb_h, "radioiheb_h");
-  GLADE_HOOKUP_OBJECT (ajouteriheb, radioiheb_f, "radioiheb_f");
   GLADE_HOOKUP_OBJECT (ajouteriheb, ajouter_iheb, "ajouter_iheb");
   GLADE_HOOKUP_OBJECT (ajouteriheb, alignment1, "alignment1");
   GLADE_HOOKUP_OBJECT (ajouteriheb, hbox1, "hbox1");
   GLADE_HOOKUP_OBJECT (ajouteriheb, image1, "image1");
   GLADE_HOOKUP_OBJECT (ajouteriheb, label9, "label9");
+  GLADE_HOOKUP_OBJECT (ajouteriheb, comboboxentry_fonction1, "comboboxentry_fonction1");
+  GLADE_HOOKUP_OBJECT (ajouteriheb, button_precedent, "button_precedent");
+  GLADE_HOOKUP_OBJECT (ajouteriheb, alignment2, "alignment2");
+  GLADE_HOOKUP_OBJECT (ajouteriheb, hbox2, "hbox2");
+  GLADE_HOOKUP_OBJECT (ajouteriheb, image2, "image2");
+  GLADE_HOOKUP_OBJECT (ajouteriheb, label10, "label10");
+  GLADE_HOOKUP_OBJECT (ajouteriheb, radioiheb_h, "radioiheb_h");
+  GLADE_HOOKUP_OBJECT (ajouteriheb, radioiheb_f, "radioiheb_f");
 
   return ajouteriheb;
 }
@@ -531,15 +534,6 @@ create_modifieriheb (void)
   GtkWidget *label12;
   GtkWidget *label17;
   GtkWidget *label11;
-  GtkWidget *radioiheb_hm;
-  GSList *radioiheb_hm_group = NULL;
-  GtkWidget *radioiheb_fm;
-  GtkWidget *precedentmodif;
-  GtkWidget *alignment4;
-  GtkWidget *hbox4;
-  GtkWidget *image4;
-  GtkWidget *label19;
-  GtkWidget *comboboxentry_fonction1;
   GtkWidget *chercheriheb;
   GtkWidget *alignment3;
   GtkWidget *hbox3;
@@ -550,6 +544,16 @@ create_modifieriheb (void)
   GtkWidget *hbox5;
   GtkWidget *image5;
   GtkWidget *label20;
+  GtkWidget *precedent_iheb_modifier;
+  GtkWidget *alignment4;
+  GtkWidget *hbox4;
+  GtkWidget *image4;
+  GtkWidget *label19;
+  GtkWidget *label_iheb_modif_out;
+  GtkWidget *comboboxentry_fonction1;
+  GtkWidget *radioiheb_hm;
+  GSList *radioiheb_hm_group = NULL;
+  GtkWidget *radioiheb_fm;
 
   modifieriheb = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_window_set_title (GTK_WINDOW (modifieriheb), _("modifieriheb"));
@@ -634,48 +638,6 @@ create_modifieriheb (void)
   gtk_fixed_put (GTK_FIXED (fixed2), label11, 64, 56);
   gtk_widget_set_size_request (label11, 96, 32);
 
-  radioiheb_hm = gtk_radio_button_new_with_mnemonic (NULL, _("Homme"));
-  gtk_widget_show (radioiheb_hm);
-  gtk_fixed_put (GTK_FIXED (fixed2), radioiheb_hm, 168, 184);
-  gtk_widget_set_size_request (radioiheb_hm, 116, 24);
-  gtk_radio_button_set_group (GTK_RADIO_BUTTON (radioiheb_hm), radioiheb_hm_group);
-  radioiheb_hm_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (radioiheb_hm));
-
-  radioiheb_fm = gtk_radio_button_new_with_mnemonic (NULL, _("Femme"));
-  gtk_widget_show (radioiheb_fm);
-  gtk_fixed_put (GTK_FIXED (fixed2), radioiheb_fm, 168, 216);
-  gtk_widget_set_size_request (radioiheb_fm, 116, 24);
-  gtk_radio_button_set_group (GTK_RADIO_BUTTON (radioiheb_fm), radioiheb_hm_group);
-  radioiheb_hm_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (radioiheb_fm));
-
-  precedentmodif = gtk_button_new ();
-  gtk_widget_show (precedentmodif);
-  gtk_fixed_put (GTK_FIXED (fixed2), precedentmodif, 0, 0);
-  gtk_widget_set_size_request (precedentmodif, 104, 40);
-
-  alignment4 = gtk_alignment_new (0.5, 0.5, 0, 0);
-  gtk_widget_show (alignment4);
-  gtk_container_add (GTK_CONTAINER (precedentmodif), alignment4);
-
-  hbox4 = gtk_hbox_new (FALSE, 2);
-  gtk_widget_show (hbox4);
-  gtk_container_add (GTK_CONTAINER (alignment4), hbox4);
-
-  image4 = gtk_image_new_from_stock ("gtk-go-back", GTK_ICON_SIZE_BUTTON);
-  gtk_widget_show (image4);
-  gtk_box_pack_start (GTK_BOX (hbox4), image4, FALSE, FALSE, 0);
-
-  label19 = gtk_label_new_with_mnemonic (_("Pr\303\251cedent"));
-  gtk_widget_show (label19);
-  gtk_box_pack_start (GTK_BOX (hbox4), label19, FALSE, FALSE, 0);
-
-  comboboxentry_fonction1 = gtk_combo_box_entry_new_text ();
-  gtk_widget_show (comboboxentry_fonction1);
-  gtk_fixed_put (GTK_FIXED (fixed2), comboboxentry_fonction1, 160, 248);
-  gtk_widget_set_size_request (comboboxentry_fonction1, 189, 29);
-  gtk_combo_box_append_text (GTK_COMBO_BOX (comboboxentry_fonction1), _("1- securit\303\251 de parking"));
-  gtk_combo_box_append_text (GTK_COMBO_BOX (comboboxentry_fonction1), _("2- tarif de parking "));
-
   chercheriheb = gtk_button_new ();
   gtk_widget_show (chercheriheb);
   gtk_fixed_put (GTK_FIXED (fixed2), chercheriheb, 352, 56);
@@ -718,11 +680,67 @@ create_modifieriheb (void)
   gtk_widget_show (label20);
   gtk_box_pack_start (GTK_BOX (hbox5), label20, FALSE, FALSE, 0);
 
+  precedent_iheb_modifier = gtk_button_new ();
+  gtk_widget_show (precedent_iheb_modifier);
+  gtk_fixed_put (GTK_FIXED (fixed2), precedent_iheb_modifier, 0, 0);
+  gtk_widget_set_size_request (precedent_iheb_modifier, 104, 40);
+
+  alignment4 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment4);
+  gtk_container_add (GTK_CONTAINER (precedent_iheb_modifier), alignment4);
+
+  hbox4 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox4);
+  gtk_container_add (GTK_CONTAINER (alignment4), hbox4);
+
+  image4 = gtk_image_new_from_stock ("gtk-go-back", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image4);
+  gtk_box_pack_start (GTK_BOX (hbox4), image4, FALSE, FALSE, 0);
+
+  label19 = gtk_label_new_with_mnemonic (_("Pr\303\251cedent"));
+  gtk_widget_show (label19);
+  gtk_box_pack_start (GTK_BOX (hbox4), label19, FALSE, FALSE, 0);
+
+  label_iheb_modif_out = gtk_label_new ("");
+  gtk_widget_show (label_iheb_modif_out);
+  gtk_fixed_put (GTK_FIXED (fixed2), label_iheb_modif_out, 344, 104);
+  gtk_widget_set_size_request (label_iheb_modif_out, 120, 32);
+
+  comboboxentry_fonction1 = gtk_combo_box_entry_new_text ();
+  gtk_widget_show (comboboxentry_fonction1);
+  gtk_fixed_put (GTK_FIXED (fixed2), comboboxentry_fonction1, 160, 248);
+  gtk_widget_set_size_request (comboboxentry_fonction1, 189, 29);
+  gtk_combo_box_append_text (GTK_COMBO_BOX (comboboxentry_fonction1), _("1-securit\303\251_parking"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (comboboxentry_fonction1), _("2-tarif_parking"));
+
+  radioiheb_hm = gtk_radio_button_new_with_mnemonic (NULL, _("Homme"));
+  gtk_widget_show (radioiheb_hm);
+  gtk_fixed_put (GTK_FIXED (fixed2), radioiheb_hm, 168, 184);
+  gtk_widget_set_size_request (radioiheb_hm, 116, 24);
+  gtk_radio_button_set_group (GTK_RADIO_BUTTON (radioiheb_hm), radioiheb_hm_group);
+  radioiheb_hm_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (radioiheb_hm));
+
+  radioiheb_fm = gtk_radio_button_new_with_mnemonic (NULL, _("Femme"));
+  gtk_widget_show (radioiheb_fm);
+  gtk_fixed_put (GTK_FIXED (fixed2), radioiheb_fm, 168, 216);
+  gtk_widget_set_size_request (radioiheb_fm, 116, 24);
+  gtk_radio_button_set_group (GTK_RADIO_BUTTON (radioiheb_fm), radioiheb_hm_group);
+  radioiheb_hm_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (radioiheb_fm));
+
   g_signal_connect ((gpointer) chercheriheb, "clicked",
                     G_CALLBACK (on_chercheriheb_clicked),
                     NULL);
   g_signal_connect ((gpointer) modifier_iheb, "clicked",
                     G_CALLBACK (on_modifier_iheb_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) precedent_iheb_modifier, "clicked",
+                    G_CALLBACK (on_precedent_iheb_modifier_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) radioiheb_hm, "toggled",
+                    G_CALLBACK (on_radioiheb_h_toggled),
+                    NULL);
+  g_signal_connect ((gpointer) radioiheb_fm, "toggled",
+                    G_CALLBACK (on_radioiheb_f_toggled),
                     NULL);
 
   /* Store pointers to all widgets, for use by lookup_widget(). */
@@ -742,14 +760,6 @@ create_modifieriheb (void)
   GLADE_HOOKUP_OBJECT (modifieriheb, label12, "label12");
   GLADE_HOOKUP_OBJECT (modifieriheb, label17, "label17");
   GLADE_HOOKUP_OBJECT (modifieriheb, label11, "label11");
-  GLADE_HOOKUP_OBJECT (modifieriheb, radioiheb_hm, "radioiheb_hm");
-  GLADE_HOOKUP_OBJECT (modifieriheb, radioiheb_fm, "radioiheb_fm");
-  GLADE_HOOKUP_OBJECT (modifieriheb, precedentmodif, "precedentmodif");
-  GLADE_HOOKUP_OBJECT (modifieriheb, alignment4, "alignment4");
-  GLADE_HOOKUP_OBJECT (modifieriheb, hbox4, "hbox4");
-  GLADE_HOOKUP_OBJECT (modifieriheb, image4, "image4");
-  GLADE_HOOKUP_OBJECT (modifieriheb, label19, "label19");
-  GLADE_HOOKUP_OBJECT (modifieriheb, comboboxentry_fonction1, "comboboxentry_fonction1");
   GLADE_HOOKUP_OBJECT (modifieriheb, chercheriheb, "chercheriheb");
   GLADE_HOOKUP_OBJECT (modifieriheb, alignment3, "alignment3");
   GLADE_HOOKUP_OBJECT (modifieriheb, hbox3, "hbox3");
@@ -760,6 +770,15 @@ create_modifieriheb (void)
   GLADE_HOOKUP_OBJECT (modifieriheb, hbox5, "hbox5");
   GLADE_HOOKUP_OBJECT (modifieriheb, image5, "image5");
   GLADE_HOOKUP_OBJECT (modifieriheb, label20, "label20");
+  GLADE_HOOKUP_OBJECT (modifieriheb, precedent_iheb_modifier, "precedent_iheb_modifier");
+  GLADE_HOOKUP_OBJECT (modifieriheb, alignment4, "alignment4");
+  GLADE_HOOKUP_OBJECT (modifieriheb, hbox4, "hbox4");
+  GLADE_HOOKUP_OBJECT (modifieriheb, image4, "image4");
+  GLADE_HOOKUP_OBJECT (modifieriheb, label19, "label19");
+  GLADE_HOOKUP_OBJECT (modifieriheb, label_iheb_modif_out, "label_iheb_modif_out");
+  GLADE_HOOKUP_OBJECT (modifieriheb, comboboxentry_fonction1, "comboboxentry_fonction1");
+  GLADE_HOOKUP_OBJECT (modifieriheb, radioiheb_hm, "radioiheb_hm");
+  GLADE_HOOKUP_OBJECT (modifieriheb, radioiheb_fm, "radioiheb_fm");
 
   return modifieriheb;
 }
