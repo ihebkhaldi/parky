@@ -480,9 +480,10 @@ char id_ag[10];
 	ihebwindow=lookup_widget(button,"ihebwindow");
 	gtk_widget_destroy(ihebwindow);
         modifieriheb=create_modifieriheb();
-	if(agent_chercher.ID_agent == 0){
+	if(agent_chercher.ID_agent == 0 || agent_chercher.ID_agent == -1){
                 gtk_widget_show(modifieriheb);
         }
+        
         else if (agent_chercher.ID_agent!=-1 && agent_chercher.ID_agent !=0)
         { 
         entryNom_agent=lookup_widget(modifieriheb,"entry_nom_agent");
@@ -519,6 +520,9 @@ char id_ag[10];
 	
         gtk_widget_show(modifieriheb);
 
+        }
+        else {
+              gtk_widget_show(modifieriheb);  
         }
 	
 }

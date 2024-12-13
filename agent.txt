@@ -1,2 +1,4 @@
-1 1 1 1 1 Homme 1 1-securite_parking
-2 2 2 2 2 Homme 2 2-tarif_parking
+1 1 1 iheb 1 Homme 1 1-securité_parking
+7 99 9 ihebb ttt Homme 999 2-tarif_parking
+44 99 9 uu ttt Femme 999 2-tarif_parking
+0 99 9 uu ttt Femme 999 2-tarif_parking
