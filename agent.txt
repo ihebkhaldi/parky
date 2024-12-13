@@ -1,4 +1,2 @@
-6 1 1 iheb khaldi Homme 23773666 1-securite_parking
-1 1 1 kamel fardi Homme 50195490 2-tarif_parking
-3 6 6 sousou loulou Femme 569 2-tarif_parking
-12 255 255 kkfds sfds Homme 255 1-securite_parking
+1 1 1 1 1 Homme 1 1-securite_parking
+2 2 2 2 2 Homme 2 2-tarif_parking

@@ -103,8 +103,10 @@ agent chercher_agent(char *filename, int ID) {
     FILE *f = fopen(filename, "r");
 
     if (f != NULL) {
-        while (fscanf(f, "%d %d %d %s %s %s %d %s\n", &a.ID_agent, &a.ID_parking, &a.ID_service,a.nom_agent, 
+        while (fscanf(f, "%d %d %d %s %s %s %d %s", &a.ID_agent, &a.ID_parking, &a.ID_service,a.nom_agent, 
                             a.prenom_agent, a.sexe, &a.numero_tel, a.fonction_agent) != EOF) {
+            g_print("%d %d %d %s %s %s %d %s\n", a.ID_agent, a.ID_parking, a.ID_service,a.nom_agent, 
+                            a.prenom_agent, a.sexe, a.numero_tel, a.fonction_agent);
             if (a.ID_agent == ID) {
                 fclose(f);
                 return a;

@@ -272,6 +272,7 @@ strcpy(id77,gtk_entry_get_text(GTK_ENTRY(entry_supp_iheb_id) ) );
 
 ident=atoi(id77);
 uuioi=supprimer_agent("agent.txt",ident);
+agent_chercher.ID_agent=-1;
 GtkWidget* suprim;
 GtkWidget* affiche;
 suprim=lookup_widget(button,"supprimeriheb");
@@ -479,8 +480,10 @@ char id_ag[10];
 	ihebwindow=lookup_widget(button,"ihebwindow");
 	gtk_widget_destroy(ihebwindow);
         modifieriheb=create_modifieriheb();
-	gtk_widget_show(modifieriheb);
-        if (agent_chercher.ID_agent!=-1)
+	if(agent_chercher.ID_agent == 0){
+                gtk_widget_show(modifieriheb);
+        }
+        else if (agent_chercher.ID_agent!=-1 && agent_chercher.ID_agent !=0)
         { 
         entryNom_agent=lookup_widget(modifieriheb,"entry_nom_agent");
 	entryPrenom_agent=lookup_widget(modifieriheb,"entry_prenom_agent");
@@ -490,9 +493,12 @@ char id_ag[10];
 	entryID_service=lookup_widget(modifieriheb,"entry_id_service");
 	entryID_parking=lookup_widget(modifieriheb,"entry_id_parking");
 
+        homme_agent=lookup_widget(modifieriheb,"radioiheb_hm");
+        femme_agent=lookup_widget(modifieriheb,"radioiheb_fm");
+
 
         gtk_entry_set_text(GTK_ENTRY(entryNom_agent), agent_chercher.nom_agent);
-                gtk_entry_set_text(GTK_ENTRY(entryPrenom_agent), agent_chercher.prenom_agent);
+        gtk_entry_set_text(GTK_ENTRY(entryPrenom_agent), agent_chercher.prenom_agent);
    if (!strcmp(agent_chercher.sexe,"Homme")) {
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(homme_agent), 1);
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(femme_agent), 0);
@@ -504,16 +510,17 @@ char id_ag[10];
     sprintf(tel,"%d",agent_chercher.numero_tel);
     sprintf(ser_ag,"%d",agent_chercher.ID_service);
     sprintf(par_ag,"%d",agent_chercher.ID_parking);
-  sprintf(id_ag,"%d",agent_chercher.ID_agent);
+    sprintf(id_ag,"%d",agent_chercher.ID_agent);
 
     gtk_entry_set_text(GTK_ENTRY(entryNumero_tel), tel);
     gtk_entry_set_text(GTK_ENTRY(entryID_service), ser_ag);
     gtk_entry_set_text(GTK_ENTRY(entryID_parking), par_ag);
- gtk_entry_set_text(GTK_ENTRY(entryID_agent), id_ag);    
+    gtk_entry_set_text(GTK_ENTRY(entryID_agent), id_ag);    
 	
+        gtk_widget_show(modifieriheb);
 
         }
-	gtk_widget_show(modifieriheb);
+	
 }
 
 
