@@ -410,6 +410,7 @@ create_ajouteriheb (void)
   GtkWidget *radioiheb_f;
   GtkWidget *label178;
   GtkWidget *comboboxentry_fonction1;
+  GtkWidget *ajouter_label_verif_ik;
 
   ajouteriheb = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_window_set_title (GTK_WINDOW (ajouteriheb), _("ajouteriheb"));
@@ -562,6 +563,11 @@ create_ajouteriheb (void)
   gtk_combo_box_append_text (GTK_COMBO_BOX (comboboxentry_fonction1), _("1-securite_parking"));
   gtk_combo_box_append_text (GTK_COMBO_BOX (comboboxentry_fonction1), _("2-tarif_parking"));
 
+  ajouter_label_verif_ik = gtk_label_new ("");
+  gtk_widget_show (ajouter_label_verif_ik);
+  gtk_fixed_put (GTK_FIXED (fixed1), ajouter_label_verif_ik, 472, 400);
+  gtk_widget_set_size_request (ajouter_label_verif_ik, 264, 64);
+
   g_signal_connect ((gpointer) ajouter_iheb, "clicked",
                     G_CALLBACK (on_ajouter_iheb_clicked),
                     NULL);
@@ -606,6 +612,7 @@ create_ajouteriheb (void)
   GLADE_HOOKUP_OBJECT (ajouteriheb, radioiheb_f, "radioiheb_f");
   GLADE_HOOKUP_OBJECT (ajouteriheb, label178, "label178");
   GLADE_HOOKUP_OBJECT (ajouteriheb, comboboxentry_fonction1, "comboboxentry_fonction1");
+  GLADE_HOOKUP_OBJECT (ajouteriheb, ajouter_label_verif_ik, "ajouter_label_verif_ik");
 
   return ajouteriheb;
 }

@@ -12,6 +12,7 @@
 #include "interface.h"
 #include "support.h"
 
+
 int
 main (int argc, char *argv[])
 {
@@ -37,9 +38,12 @@ main (int argc, char *argv[])
    * the project. Delete any components that you don't want shown initially.
    */
   ihebhome = create_ihebwindow ();
+  
   treeview1=lookup_widget(ihebhome, "treeviewnk");
   afficher_agent(treeview1,"agent.txt");
-  gtk_widget_show (ihebhome);
+  
+  gtk_widget_show(ihebhome);
+
 
   gtk_main ();
   return 0;

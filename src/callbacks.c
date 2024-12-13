@@ -44,6 +44,7 @@ agent a ;
     GtkWidget *entryNumero_tel;
     GtkWidget *entryID_parking;
     GtkWidget *entryID_service;
+    GtkWidget *ajouter_label_verif_ik;
 
 
 
@@ -58,6 +59,7 @@ agent a ;
         entryNumero_tel=lookup_widget(button,"entry_numero_tel");
 	entryID_service=lookup_widget(button,"entry_id_service");
 	entryID_parking=lookup_widget(button,"entry_id_parking");
+        ajouter_label_verif_ik=lookup_widget(button,"ajouter_label_verif_ik");
 
         strcpy(id_ag,gtk_entry_get_text(GTK_ENTRY(entryID_agent)));
 	strcpy(a.prenom_agent,gtk_entry_get_text(GTK_ENTRY(entryPrenom_agent)));
@@ -72,8 +74,47 @@ agent a ;
         a.ID_parking = atoi(id_park);
         a.ID_service = atoi(id_ser);
 	strcpy(a.sexe,sexe);
-
+        agent_chercher= chercher_agent("agent.txt",a.ID_agent);
+        if(!strcmp(a.nom_agent,"")){
+                gtk_label_set_text(GTK_LABEL(ajouter_label_verif_ik),"nom obligatoire");
+        }
+        else if(!strcmp(a.sexe,"")){
+                //set text 
+                gtk_label_set_text(GTK_LABEL(ajouter_label_verif_ik),"sexe obligatoire");
+        }
+        else if(!strcmp(a.fonction_agent,"")){
+                //set text 
+                gtk_label_set_text(GTK_LABEL(ajouter_label_verif_ik),"fonction obligatoire");
+        }
+        else if(!strcmp(a.prenom_agent,"")){
+                //set text 
+        }
+        else if(!strcmp(num,"")){
+                //set text 
+        }
+        else if(!strcmp(id_ag,"")){
+                //set text 
+        }
+        else if(!strcmp(id_ser,"")){
+                //set text 
+        }
+        else if(!strcmp(id_park,"")){
+                //set text 
+        }
+        
+        else if(!(agent_chercher.ID_agent==-1)){
+                gtk_label_set_text(GTK_LABEL(ajouter_label_verif_ik),"id agent deja utilise");
+        }
+        
+        else{
 	ia=ajouter_agent("agent.txt",a);
+        if(ia==1){
+                //set text to bien ajoutee
+        }
+        else{
+                //set text erreur
+        }
+        }
 
 }
 

@@ -117,138 +117,91 @@ agent chercher_agent(char *filename, int ID) {
     a.ID_agent=-1;
     return a;
 }
-/*
-int afficher_agent(char *filename) {
-    agent a;
-    FILE *f = fopen(filename, "r");
-
-    if (f != NULL) {
-        while (fscanf(f, "%d %d %d %s %s %s %d %s\n", &a.ID_agent, &a.ID_parking, &a.ID_service,
-                      a.nom_agent, a.prenom_agent, a.sexe, &a.numero_tel, a.fonction_agent) != EOF) {
-            printf("%d %d %d %s %s %s %d %s\n", a.ID_agent, a.ID_parking, a.ID_service,
-                   a.nom_agent, a.prenom_agent, a.sexe, a.numero_tel, a.fonction_agent);
-        }
-        fclose(f);
-        return 1;
-    }
-    return -1;
-}
-
-
-void afficher_reservation(char*file_reservation,char date_reservation[]) {
-reservation res ;
-FILE*f=fopen("reservation.txt","r");
-if (f!=NULL) {
-while (fscanf(f,"%d" "%d" "%d" "%d" "%s" "%s",&res.id_reservation,&res.id_client,&res.id_parking,&res.duree_reservation,res.nom_parking,res.date_reservation)!=EOF){
-
-    if(strcmp(res.date_reservation,date_reservation)==0) {
-    printf("id_reservation: %d\n",res.id_reservation);
-     printf("id_client: %d\n",res.id_client);
-      printf("id_parking: %d\n",res.id_parking);
-        printf("durée_reservation: %d\n",res.duree_reservation);
-         printf("nom_parking: %s\n",res.nom_parking);
-            printf("date_resevation: %s\n",res.date_reservation); 
-
- }
-     }
-
-
-fclose(f);
-}else{
-printf("echec affichage :impossible d'ovrir le fichier.\n"); 
- }
-   }
-*/
-    
-
 
 void afficher_agent(GtkWidget* treeview1,char*filename)
 {
-	GtkListStore *adstore;
-	GtkTreeViewColumn *adcolumn;
-	GtkCellRenderer *cellad;
+	GtkCellRenderer *renderer;
+    GtkTreeViewColumn *column;
+    GtkTreeIter iter;
+    GtkListStore *store;
 	FILE *f;
 	agent a;
-        int i;
-        adstore=NULL;
-    
-    adstore = gtk_tree_view_get_model(treeview1);
-        if(adstore==NULL){
-            cellad = gtk_cell_renderer_text_new();
-        adcolumn = gtk_tree_view_column_new_with_attributes("ID",
-                                                            cellad,
+
+    store=NULL;
+    store = gtk_tree_view_get_model(treeview1);
+        if(store==NULL)
+        {
+            renderer = gtk_cell_renderer_text_new();
+        column = gtk_tree_view_column_new_with_attributes("ID",
+                                                            renderer,
                                                             "text", ID_agent,
                                                             NULL);
-gtk_tree_view_append_column(GTK_TREE_VIEW(treeview1), adcolumn);
-        cellad = gtk_cell_renderer_text_new();
-        adcolumn = gtk_tree_view_column_new_with_attributes("ID parking",
-                                                            cellad,
+gtk_tree_view_append_column(GTK_TREE_VIEW(treeview1), column);
+        renderer = gtk_cell_renderer_text_new();
+        column = gtk_tree_view_column_new_with_attributes("ID parking",
+                                                            renderer,
                                                             "text", Id_Parking,
                                                             NULL);
-gtk_tree_view_append_column(GTK_TREE_VIEW(treeview1), adcolumn);
-        cellad = gtk_cell_renderer_text_new();
-        adcolumn = gtk_tree_view_column_new_with_attributes("ID service",
-                                                            cellad,
+gtk_tree_view_append_column(GTK_TREE_VIEW(treeview1), column);
+        renderer = gtk_cell_renderer_text_new();
+        column = gtk_tree_view_column_new_with_attributes("ID service",
+                                                            renderer,
                                                             "text", ID_service,
                                                             NULL);
-gtk_tree_view_append_column(GTK_TREE_VIEW(treeview1), adcolumn);
+gtk_tree_view_append_column(GTK_TREE_VIEW(treeview1), column);
 
-        cellad = gtk_cell_renderer_text_new();
-        adcolumn = gtk_tree_view_column_new_with_attributes("Nom",
-                                                            cellad,
+        renderer = gtk_cell_renderer_text_new();
+        column = gtk_tree_view_column_new_with_attributes("Nom",
+                                                            renderer,
                                                             "text", nom_agent,
                                                             NULL);
-gtk_tree_view_append_column(GTK_TREE_VIEW(treeview1), adcolumn);
-        cellad = gtk_cell_renderer_text_new();
-        adcolumn = gtk_tree_view_column_new_with_attributes("Prénom",
-                                                            cellad,
+gtk_tree_view_append_column(GTK_TREE_VIEW(treeview1), column);
+        renderer = gtk_cell_renderer_text_new();
+        column = gtk_tree_view_column_new_with_attributes("Prénom",
+                                                            renderer,
                                                             "text", prenom_agent,
                                                             NULL);
-gtk_tree_view_append_column(GTK_TREE_VIEW(treeview1), adcolumn);
+gtk_tree_view_append_column(GTK_TREE_VIEW(treeview1), column);
 
-        cellad = gtk_cell_renderer_text_new();
-        adcolumn = gtk_tree_view_column_new_with_attributes("Sexe",
-                                                            cellad,
+        renderer = gtk_cell_renderer_text_new();
+        column = gtk_tree_view_column_new_with_attributes("Sexe",
+                                                            renderer,
                                                             "text", sexe,
                                                             NULL);
-gtk_tree_view_append_column(GTK_TREE_VIEW(treeview1), adcolumn);
-cellad = gtk_cell_renderer_text_new();
-        adcolumn = gtk_tree_view_column_new_with_attributes("Numero tel",
-                                                            cellad,
+gtk_tree_view_append_column(GTK_TREE_VIEW(treeview1), column);
+renderer = gtk_cell_renderer_text_new();
+        column = gtk_tree_view_column_new_with_attributes("Numero tel",
+                                                            renderer,
                                                             "text", numero_tel,
                                                             NULL);
-gtk_tree_view_append_column(GTK_TREE_VIEW(treeview1), adcolumn);
-cellad = gtk_cell_renderer_text_new();
-        adcolumn = gtk_tree_view_column_new_with_attributes("Fonction   ",
-                                                            cellad,
+gtk_tree_view_append_column(GTK_TREE_VIEW(treeview1), column);
+renderer = gtk_cell_renderer_text_new();
+        column = gtk_tree_view_column_new_with_attributes("Fonction   ",
+                                                            renderer,
                                                             "text",fonction_agent,
                                                             NULL);
-gtk_tree_view_append_column(GTK_TREE_VIEW(treeview1), adcolumn);
+gtk_tree_view_append_column(GTK_TREE_VIEW(treeview1), column);
         }
-        adstore = gtk_list_store_new(COLUMNS1,G_TYPE_INT,G_TYPE_INT,G_TYPE_INT,G_TYPE_STRING,G_TYPE_STRING,G_TYPE_STRING,G_TYPE_INT,G_TYPE_STRING);
+        store = gtk_list_store_new(COLUMNS1,G_TYPE_INT,G_TYPE_INT,G_TYPE_INT,G_TYPE_STRING,G_TYPE_STRING,G_TYPE_STRING,G_TYPE_INT,G_TYPE_STRING);
         
         f=fopen(filename,"r");
 while(fscanf(f,"%d %d %d %s %s %s %d %s", &a.ID_agent, &a.ID_parking, &a.ID_service,
                    a.nom_agent, a.prenom_agent, a.sexe, &a.numero_tel, a.fonction_agent)!=EOF)
-        {GtkTreeIter pIter;
-         gtk_list_store_append(adstore, &pIter);
-         gtk_list_store_set(adstore, &pIter,
-                            0,a.ID_agent,
-                            1,a.ID_parking,
-                            2,a.ID_service,
-                            3,a.nom_agent,
-                            4,a.prenom_agent,
-                            5,a.sexe,
-                            6,a.numero_tel,
-                            7,a.fonction_agent,
+        {
+         gtk_list_store_append(store, &iter);
+         gtk_list_store_set(store, &iter,
+                            ID_agent,a.ID_agent,
+                            Id_Parking,a.ID_parking,
+                            ID_service,a.ID_service,
+                            nom_agent,a.nom_agent,
+                            prenom_agent,a.prenom_agent,
+                            sexe,a.sexe,
+                            numero_tel,a.numero_tel,
+                            fonction_agent,a.fonction_agent,
                             -1);}
         fclose(f);
-
-
-
-  gtk_tree_view_set_model ( GTK_TREE_VIEW (treeview1),
-                                  GTK_TREE_MODEL(adstore)  );
-    g_object_unref(adstore);
+        gtk_tree_view_set_model ( GTK_TREE_VIEW (treeview1), GTK_TREE_MODEL(store));
+        g_object_unref(store);
 
 }
 
