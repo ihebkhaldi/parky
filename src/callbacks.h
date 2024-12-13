@@ -13,9 +13,6 @@ void
 on_ajouter_iheb_clicked                (GtkButton       *button,
                                         gpointer         user_data);
 
-void
-on_afficher_reservation_clicked        (GtkButton       *button,
-                                        gpointer         user_data);
 
 void
 on_chercheriheb_clicked                (GtkButton       *button,
@@ -80,3 +77,37 @@ void
 on_precedent_iheb_modifier_clicked     (GtkButton       *button,
                                         gpointer         user_data);
 
+
+void
+on_button_precedent_iheb_reservation_clicked
+                                        (GtkButton       *button,
+                                        gpointer         user_data);
+
+
+
+void
+on_btn_reservation_iheb_nav_clicked    (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_button_precedent_iheb_reservation_clicked
+                                        (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_afficher_par_fonction_kh_button_clicked
+                                        (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_calander_resrver_iheb_day_selected_double_click
+                                        (GtkCalendar     *calendar,
+                                        gpointer         user_data);
+
+void
+on_calander_resrver_iheb_day_selected  (GtkCalendar     *calendar,
+                                        gpointer         user_data);
+
+void
+on_afficher_res_par_date_ik_clicked    (GtkButton       *button,
+                                        gpointer         user_data);

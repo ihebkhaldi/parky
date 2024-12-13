@@ -10,7 +10,7 @@
 #include "agent.h"
 int ia;
 int tr;
-char sexe[20];
+char sexe[20]="Homme";
 agent agent_chercher ;
 int confirmer_supprimer_iheb=0;
 
@@ -78,12 +78,6 @@ agent a ;
 }
 
 
-void
-on_afficher_reservation_clicked        (GtkButton       *button,
-                                        gpointer         user_data)
-{
-
-}
 
 
 void
@@ -119,7 +113,6 @@ on_chercheriheb_clicked                (GtkButton       *button,
         labelout = lookup_widget(button,"label_iheb_modif_out");
 
         strcpy(id_ag,gtk_entry_get_text(GTK_ENTRY(entryID_agent)));
-        
 
         ID_rech=atoi(id_ag);
 
@@ -128,16 +121,14 @@ on_chercheriheb_clicked                (GtkButton       *button,
                 gtk_label_set_text(GTK_LABEL(labelout),"");
                 gtk_entry_set_text(GTK_ENTRY(entryNom_agent), agent_chercher.nom_agent);
                 gtk_entry_set_text(GTK_ENTRY(entryPrenom_agent), agent_chercher.prenom_agent);
-    if (!strcmp(agent_chercher.sexe,"Homme"))
-    {
-      gtk_toggle_button_set_active(GTK_RADIO_BUTTON(homme_agent), 1);
-      gtk_toggle_button_set_active(GTK_RADIO_BUTTON(femme_agent), 0);
-    }
-    else
-    {
-      gtk_toggle_button_set_active(GTK_RADIO_BUTTON(homme_agent), 0);
-      gtk_toggle_button_set_active(GTK_RADIO_BUTTON(femme_agent), 1);
-    }
+   if (!strcmp(agent_chercher.sexe,"Homme")) {
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(homme_agent), 1);
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(femme_agent), 0);
+}else {
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(homme_agent), 0);
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(femme_agent), 1);
+}
+
     sprintf(tel,"%d",agent_chercher.numero_tel);
     sprintf(ser_ag,"%d",agent_chercher.ID_service);
     sprintf(par_ag,"%d",agent_chercher.ID_parking);
@@ -178,12 +169,7 @@ on_modifier_iheb_clicked               (GtkButton       *button,
     GtkWidget *affiche1;
     GtkWidget *modifier;
     GtkWidget *labelout;
-
-    
-    
-   
-
-
+    GtkWidget *treeview2;
 
    char nom_agent[10] ,prenom_agent[10], fonction_agent[20];
    char id_ag[15], id_ser[15], id_park[15], num[10];
@@ -216,12 +202,12 @@ on_modifier_iheb_clicked               (GtkButton       *button,
 
 
          
-	tr = modifier_agent("agent.txt",1,a);
+	tr = modifier_agent("agent.txt",agent_chercher.ID_agent,a);
         gtk_widget_destroy(modifier);
 	affiche1=create_ihebwindow();
 	gtk_widget_show(affiche1);
-	/*treeview2=lookup_widget(affiche1, "treeviewnk") ;
-	Afficheragent(treeview2,"agent.txt");*/
+	treeview2=lookup_widget(affiche1, "treeviewnk") ;
+	afficher_agent(treeview2,"agent.txt");
         
 	
 if(tr==-1){gtk_label_set_text(GTK_LABEL(labelout),"Erreur");}	
@@ -304,11 +290,54 @@ afficher_agent(treeview1,"agent.txt");
 
 }
 
-
+// chercher nav
 void
 on_btn_chercher_iheb_clicked           (GtkButton       *button,
                                         gpointer         user_data)
 {
+       GtkWidget *entryID_agent;
+        GtkWidget *entryNom_agent;
+    GtkWidget *entryPrenom_agent;
+    GtkWidget *entryFonction_agent;
+    GtkWidget *entryNumero_tel;
+    GtkWidget *entryID_parking;
+    GtkWidget *entryID_service;
+    GtkWidget *homme_agent;
+    GtkWidget *femme_agent;
+    GtkWidget *labelout;
+    GtkWidget *entrychercheriheb;
+    GtkWidget *non_trouve_label_home;
+
+        char id_ag[15];
+        int ID_rech;
+        char tel[8];
+        char ser_ag[20];
+        char par_ag[20];
+        
+        entrychercheriheb=lookup_widget(button,"entrychercheriheb");
+        non_trouve_label_home=lookup_widget(button,"non_trouve_label_home");
+
+
+        strcpy(id_ag,gtk_entry_get_text(GTK_ENTRY(entrychercheriheb)));
+        
+
+        ID_rech=atoi(id_ag);
+
+        agent_chercher= chercher_agent( "agent.txt",  ID_rech);
+        if(agent_chercher.ID_agent==ID_rech)
+        {
+                 gtk_label_set_text(GTK_LABEL(non_trouve_label_home)," agent trouvé");
+    
+ }
+        else
+        {
+                
+                gtk_label_set_text(GTK_LABEL(non_trouve_label_home),"non trouvé");
+
+        }
+
+
+
 
 }
 
@@ -342,7 +371,7 @@ on_precedent_iheb_supp_clicked         (GtkButton       *button,
         supprimeriheb=lookup_widget(button,"supprimeriheb");
 	gtk_widget_destroy(supprimeriheb);
 	treeview1=lookup_widget(ihebwindow, "treeviewnk");
-afficher_agent(treeview1,"agent.txt");
+        afficher_agent(treeview1,"agent.txt");
 	gtk_widget_show(ihebwindow);
 
 
@@ -389,10 +418,60 @@ on_btn_modifier_iheb_nav_clicked       (GtkButton       *button,
                                         gpointer         user_data)
 {
  GtkWidget *ihebwindow,*modifieriheb;
+ GtkWidget *entryID_agent;
+        GtkWidget *entryNom_agent;
+    GtkWidget *entryPrenom_agent;
+    GtkWidget *entryFonction_agent;
+    GtkWidget *entryNumero_tel;
+    GtkWidget *entryID_parking;
+    GtkWidget *entryID_service;
+    GtkWidget *homme_agent;
+    GtkWidget *femme_agent;
+
+ char tel[8];
+char ser_ag[20];
+char par_ag[20];
+char id_ag[10];
+
+
 	
 	ihebwindow=lookup_widget(button,"ihebwindow");
 	gtk_widget_destroy(ihebwindow);
-	modifieriheb=create_modifieriheb();
+        modifieriheb=create_modifieriheb();
+	gtk_widget_show(modifieriheb);
+        if (agent_chercher.ID_agent!=-1)
+        { 
+        entryNom_agent=lookup_widget(modifieriheb,"entry_nom_agent");
+	entryPrenom_agent=lookup_widget(modifieriheb,"entry_prenom_agent");
+	entryID_agent=lookup_widget(modifieriheb,"entry_id_agent");
+	entryFonction_agent=lookup_widget(modifieriheb,"comboboxentry_fonction1");
+        entryNumero_tel=lookup_widget(modifieriheb,"entry_numero_tel");
+	entryID_service=lookup_widget(modifieriheb,"entry_id_service");
+	entryID_parking=lookup_widget(modifieriheb,"entry_id_parking");
+
+
+        gtk_entry_set_text(GTK_ENTRY(entryNom_agent), agent_chercher.nom_agent);
+                gtk_entry_set_text(GTK_ENTRY(entryPrenom_agent), agent_chercher.prenom_agent);
+   if (!strcmp(agent_chercher.sexe,"Homme")) {
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(homme_agent), 1);
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(femme_agent), 0);
+}else {
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(homme_agent), 0);
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(femme_agent), 1);
+}
+
+    sprintf(tel,"%d",agent_chercher.numero_tel);
+    sprintf(ser_ag,"%d",agent_chercher.ID_service);
+    sprintf(par_ag,"%d",agent_chercher.ID_parking);
+  sprintf(id_ag,"%d",agent_chercher.ID_agent);
+
+    gtk_entry_set_text(GTK_ENTRY(entryNumero_tel), tel);
+    gtk_entry_set_text(GTK_ENTRY(entryID_service), ser_ag);
+    gtk_entry_set_text(GTK_ENTRY(entryID_parking), par_ag);
+ gtk_entry_set_text(GTK_ENTRY(entryID_agent), id_ag);    
+	
+
+        }
 	gtk_widget_show(modifieriheb);
 }
 
@@ -413,4 +492,118 @@ GtkWidget *ihebwindow,*modifieriheb;
 
 
 
+
+
+
+
+void
+on_btn_reservation_iheb_nav_clicked    (GtkButton       *button,
+                                        gpointer         user_data)
+{
+ GtkWidget *ihebwindow,*reserveriheb,*treeview;
+	
+	ihebwindow=lookup_widget(button,"ihebwindow");
+
+	gtk_widget_destroy(ihebwindow);
+	reserveriheb=create_reserveriheb();
+        treeview= lookup_widget(reserveriheb,"treeview_reservation_ik");
+        afficher_reservation(treeview,"reservation.txt");
+
+	gtk_widget_show(reserveriheb);
+}
+
+
+
+
+
+
+void
+on_button_precedent_iheb_reservation_clicked (GtkButton       *button,
+                                              gpointer         user_data)
+{
+GtkWidget *ihebwindow,*reserveriheb,*treeview1;
+	
+	ihebwindow=create_ihebwindow();
+        reserveriheb=lookup_widget(button,"reserveriheb");
+	gtk_widget_destroy(reserveriheb);
+        treeview1=lookup_widget(ihebwindow, "treeviewnk");
+        afficher_agent(treeview1,"agent.txt");
+	
+	gtk_widget_show(ihebwindow);
+}
+
+
+void
+on_afficher_par_fonction_kh_button_clicked
+                                        (GtkButton       *button,
+                                        gpointer         user_data)
+{
+        int fonction;
+        GtkWidget *spinbutton_fonction_agent_kh,*treeview;
+
+        spinbutton_fonction_agent_kh = lookup_widget(button, "spinbutton_fonction_agent_kh");
+        treeview = lookup_widget(button, "treeviewnk");
+
+        fonction=gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(spinbutton_fonction_agent_kh));
+        AgentParFonction(fonction);
+        afficher_agent(treeview,"agentParFonction.txt");
+}
+
+
+            
+
+
+
+
+
+void
+on_calander_resrver_iheb_day_selected_double_click
+                                        (GtkCalendar     *calendar,
+                                        gpointer         user_data)
+{
+
+date date_reservation;
+        GtkWidget *date_de_reservation_calendar,*treeview;
+
+        date_de_reservation_calendar = lookup_widget(calendar, "calander_resrver_iheb");
+        treeview = lookup_widget(calendar, "treeview_reservation_ik");
+
+        gtk_calendar_get_date(GTK_CALENDAR(date_de_reservation_calendar),
+                                    &date_reservation.annee,
+                                    &date_reservation.mois,
+                                    &date_reservation.jour);
+        ReservationParDate(date_reservation);
+        afficher_reservation(treeview,"reservationParDate.txt");
+}
+
+
+void
+on_calander_resrver_iheb_day_selected  (GtkCalendar     *calendar,
+                                        gpointer         user_data)
+{
+        
+
+}
+
+
+void
+on_afficher_res_par_date_ik_clicked    (GtkButton       *button,
+                                        gpointer         user_data)
+{
+        date date_reservation;
+        GtkWidget *date_de_reservation_calendar,*treeview;
+
+        date_de_reservation_calendar = lookup_widget(button, "calander_resrver_iheb");
+        treeview = lookup_widget(button, "treeview_reservation_ik");
+
+        gtk_calendar_get_date(GTK_CALENDAR(date_de_reservation_calendar),
+                                    &date_reservation.annee,
+                                    &date_reservation.mois,
+                                    &date_reservation.jour);
+        ReservationParDate(date_reservation);
+        afficher_reservation(treeview,"reservationParDate.txt");
+
+        
+
+}
 
